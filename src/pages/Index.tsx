@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Sparkles, Trophy, RotateCcw } from "lucide-react";
+import { Sparkles, Trophy, RotateCcw, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const [targetNumber, setTargetNumber] = useState<number>(0);
@@ -145,9 +146,18 @@ const Index = () => {
         </Card>
 
         {/* Instructions */}
-        <footer className="text-center text-sm text-muted-foreground bg-card/50 p-4 rounded-lg backdrop-blur-sm">
-          <p>💡 The computer has chosen a number between 1 and 100.</p>
-          <p>Try to guess it with the minimum number of attempts!</p>
+        <footer className="space-y-4">
+          <div className="text-center text-sm text-muted-foreground bg-card/50 p-4 rounded-lg backdrop-blur-sm">
+            <p>💡 The computer has chosen a number between 1 and 100.</p>
+            <p>Try to guess it with the minimum number of attempts!</p>
+          </div>
+          
+          <Link to="/compare">
+            <Button variant="outline" className="w-full h-12 text-lg font-semibold group">
+              <span>Try Vehicle Comparison Tool</span>
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
         </footer>
       </div>
     </main>
