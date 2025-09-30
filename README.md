@@ -32,7 +32,7 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install the necessary dependencies.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Step 4: Start the development server with auto-reloading and  instant preview.
 npm run dev
 ```
 
@@ -66,7 +66,7 @@ Simply open [Lovable](https://lovable.dev/projects/0554baaf-10a3-4d4b-a7b6-39b76
 
 ## Can I connect a custom domain to my Lovable project?
 
-Yes, you can!
+Yes, you can do!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
