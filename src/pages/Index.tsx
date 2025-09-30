@@ -9,7 +9,7 @@ const Index = () => {
   const [targetNumber, setTargetNumber] = useState<number>(0);
   const [guess, setGuess] = useState<string>("");
   const [attempts, setAttempts] = useState<number>(0);
-  const [message, setMessage] = useState<string>("Угадайте число от 1 до 100!");
+  const [message, setMessage] = useState<string>("Guess a number between 1 and 100!");
   const [gameOver, setGameOver] = useState<boolean>(false);
   const [bestScore, setBestScore] = useState<number>(
     parseInt(localStorage.getItem("bestScore") || "999")
@@ -24,7 +24,7 @@ const Index = () => {
     setTargetNumber(random);
     setGuess("");
     setAttempts(0);
-    setMessage("Угадайте число от 1 до 100!");
+    setMessage("Guess a number between 1 and 100!");
     setGameOver(false);
   };
 
@@ -32,7 +32,7 @@ const Index = () => {
     const numGuess = parseInt(guess);
 
     if (isNaN(numGuess) || numGuess < 1 || numGuess > 100) {
-      toast.error("Введите число от 1 до 100");
+      toast.error("Please enter a number between 1 and 100");
       return;
     }
 
@@ -40,22 +40,22 @@ const Index = () => {
     setAttempts(newAttempts);
 
     if (numGuess === targetNumber) {
-      setMessage(`🎉 Поздравляю! Вы угадали число ${targetNumber}!`);
+      setMessage(`🎉 Congratulations! You guessed the number ${targetNumber}!`);
       setGameOver(true);
       
       if (newAttempts < bestScore) {
         setBestScore(newAttempts);
         localStorage.setItem("bestScore", newAttempts.toString());
-        toast.success(`🏆 Новый рекорд: ${newAttempts} попыток!`);
+        toast.success(`🏆 New record: ${newAttempts} attempts!`);
       } else {
-        toast.success(`Угадано за ${newAttempts} попыток!`);
+        toast.success(`Guessed in ${newAttempts} attempts!`);
       }
     } else if (numGuess < targetNumber) {
-      setMessage("⬆️ Загаданное число больше!");
-      toast.info("Попробуйте число побольше");
+      setMessage("⬆️ The number is higher!");
+      toast.info("Try a bigger number");
     } else {
-      setMessage("⬇️ Загаданное число меньше!");
-      toast.info("Попробуйте число поменьше");
+      setMessage("⬇️ The number is lower!");
+      toast.info("Try a smaller number");
     }
 
     setGuess("");
@@ -75,12 +75,12 @@ const Index = () => {
           <div className="flex items-center justify-center gap-2 mb-4">
             <Sparkles className="w-8 h-8 text-primary animate-pulse" />
             <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Угадай Число
+              Guess the Number
             </h1>
             <Sparkles className="w-8 h-8 text-accent animate-pulse" />
           </div>
           <p className="text-muted-foreground text-lg">
-            Проверьте свою интуицию!
+            Test your intuition!
           </p>
         </header>
 
@@ -89,13 +89,13 @@ const Index = () => {
           {/* Stats */}
           <section className="flex justify-between items-center">
             <div className="text-center">
-              <p className="text-sm text-muted-foreground">Попытки</p>
+              <p className="text-sm text-muted-foreground">Attempts</p>
               <p className="text-3xl font-bold text-primary">{attempts}</p>
             </div>
             <div className="text-center">
               <div className="flex items-center gap-1 justify-center mb-1">
                 <Trophy className="w-4 h-4 text-accent" />
-                <p className="text-sm text-muted-foreground">Рекорд</p>
+                <p className="text-sm text-muted-foreground">Best</p>
               </div>
               <p className="text-3xl font-bold text-accent">
                 {bestScore === 999 ? "-" : bestScore}
@@ -113,7 +113,7 @@ const Index = () => {
             <div className="space-y-4">
               <Input
                 type="number"
-                placeholder="Введите число..."
+                placeholder="Enter a number..."
                 value={guess}
                 onChange={(e) => setGuess(e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -126,7 +126,7 @@ const Index = () => {
                 className="w-full h-12 text-lg font-semibold"
                 variant="default"
               >
-                Проверить
+                Check
               </Button>
             </div>
           )}
@@ -139,15 +139,15 @@ const Index = () => {
               variant="default"
             >
               <RotateCcw className="w-5 h-5 mr-2" />
-              Новая игра
+              New Game
             </Button>
           )}
         </Card>
 
         {/* Instructions */}
         <footer className="text-center text-sm text-muted-foreground bg-card/50 p-4 rounded-lg backdrop-blur-sm">
-          <p>💡 Компьютер загадал число от 1 до 100.</p>
-          <p>Попробуйте угадать его за минимальное количество попыток!</p>
+          <p>💡 The computer has chosen a number between 1 and 100.</p>
+          <p>Try to guess it with the minimum number of attempts!</p>
         </footer>
       </div>
     </main>
